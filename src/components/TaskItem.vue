@@ -1,9 +1,12 @@
 <template>
   <div>
     <div>
-      <span @click="showDescription=!showDescription">{{taskName}}</span>
+      <div  class="clickable" @click="showDescription=!showDescription">{{taskName}}</div>
     </div>
-    <div v-if="showDescription">{{taskDescription}}</div>
+    <div v-if="showDescription">
+<!--        <input v-model="taskDescription">-->
+        {{taskDescription}}
+    </div>
   </div>
 </template>
 
@@ -23,4 +26,5 @@ export default {
 </script>
 
 <style scoped>
+    
 </style>
