@@ -1,18 +1,20 @@
 <template>
   <div>
     <div>
-      <div  class="clickable" @click="showDescription=!showDescription">{{taskName}}</div>
+      <div class="clickable" @click="showDescription = !showDescription">
+        {{ taskName }}
+      </div>
     </div>
     <div v-if="showDescription">
-<!--        <input v-model="taskDescription">-->
-        {{taskDescription}}
+      <!--        <input v-model="taskDescription">-->
+      {{ taskDescription }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TaskItem',
+  name: "TaskItem",
   props: {
     taskName: String,
     taskDescription: String
@@ -20,11 +22,9 @@ export default {
   data() {
     return {
       showDescription: false
-    }
+    };
   }
-}
+};
 </script>
 
-<style scoped>
-    
-</style>
+<style scoped></style>
