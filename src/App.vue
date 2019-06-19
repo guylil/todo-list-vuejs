@@ -3,7 +3,7 @@
 <!--    <h3 style="background-color: grey">this is going to be  a todo list app</h3>-->
 <!--    <h3>top bar</h3>-->
 <!--    <h4>buttons &#45;&#45; add &#45;&#45;info</h4>-->
-    <todo-list msg="this is todo" />
+    <todo-list/>
 <!--    <h6>bottom bar</h6>m-->
 
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
@@ -29,6 +29,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 </style>
