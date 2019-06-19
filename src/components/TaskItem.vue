@@ -6,7 +6,7 @@
       </div>
     </div>
     <div v-if="showDescription">
-      <!--        <input v-model="taskDescription">-->
+      <textarea v-model="itemDesc"></textarea><button>edit</button>
       {{ taskDescription }}
     </div>
   </div>
@@ -21,10 +21,16 @@ export default {
   },
   data() {
     return {
-      showDescription: false
+      showDescription: false,
+      itemName: this.taskName,
+      itemDesc: this.taskDescription
     };
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .clickable{
+    cursor: pointer;
+  }
+</style>
