@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <button @click="$emit('create-new-task', task)">+</button>
+  <div @keyup.enter="$emit('create-new-task', task)">
+      Add a new task
     <input type="text" v-model="task.newTaskName" />
     <input type="text" v-model="task.newTaskDesc" />
-    new task component
+    <button @click="$emit('create-new-task', task)">+</button>
   </div>
 </template>
 
@@ -21,9 +21,6 @@ export default {
     };
   },
   methods: {
-    newTask() {
-      this.$emit("create-new-task", this.task);
-    }
   },
   computed: {}
 };
