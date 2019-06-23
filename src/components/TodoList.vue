@@ -1,22 +1,18 @@
 <template>
   <div class="hello">
-    <button @click="createNewTask()">+</button>
-    <input type="text" v-model="newTaskName">
-    <input type="text" v-model="newTaskDesc">
+    <new-task @create-new-task="createNewTask"></new-task>
     <div v-for="(task, i) in tasks" :key="i">
-      <task-item
-        class="blue"
-        :task-details="task"
-      ></task-item>
+      <task-item class="blue" :task-details="task"></task-item>
     </div>
   </div>
 </template>
 
 <script>
 import TaskItem from "./TaskItem";
+import NewTask from "./NewTask";
 export default {
   name: "TodoList",
-  components: { TaskItem },
+  components: { NewTask, TaskItem },
   props: {
     // msg: String
   },
@@ -25,25 +21,27 @@ export default {
       tasks: [
         { taskName: "first task", taskDescription: "first desc", taskId: 1 },
         { taskName: "second task", taskDescription: "second desc", taskId: 2 }
-      ],
-      newTaskName: 'newTaskName',
-      newTaskDesc: 'newTaskDesc',
+      ]
     };
   },
   methods: {
-    createNewTask() {
+    createNewTask(task) {
       let newTask = {
-        taskName: this.newTaskName,
-        taskDescription: this.newTaskDesc,
-        taskId : this.newTaskId
+        taskName: task.newTaskName,
+        taskDescription: task.newTaskDesc,
+        taskId: this.newTaskId
       };
-      this.tasks.push(newTask);
+      if(newTask.taskName.length>0){
+        this.tasks.push(newTask);
+      }
     },
     updateATask() {}
   },
   computed: {
     newTaskId() {
-      return this.tasks.reduce((max,curr)=> Math.max(max, curr.taskId),0)+1;
+      return (
+        this.tasks.reduce((max, curr) => Math.max(max, curr.taskId), 0) + 1
+      );
     }
   }
 };
