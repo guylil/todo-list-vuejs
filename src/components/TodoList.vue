@@ -19,19 +19,20 @@ export default {
   data() {
     return {
       tasks: [
-        { taskName: "first task", taskDescription: "first desc", taskId: 1 },
-        { taskName: "second task", taskDescription: "second desc", taskId: 2 }
+        { taskTitle: "first task", taskDescription: "first desc", taskId: 1 },
+        { taskTitle: "second task", taskDescription: "second desc", taskId: 2 }
       ]
     };
   },
   methods: {
     createNewTask(task) {
+      // adds a new task to the array
       let newTask = {
-        taskName: task.newTaskName,
+        taskTitle: task.newTaskTitle,
         taskDescription: task.newTaskDesc,
         taskId: this.newTaskId
       };
-      if(newTask.taskName.length>0){
+      if(newTask.taskTitle.length>0){
         this.tasks.push(newTask);
       }
     },

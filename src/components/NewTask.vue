@@ -1,8 +1,8 @@
 <template>
   <div @keyup.enter="$emit('create-new-task', task)">
       Add a new task
-    <input type="text" v-model="task.newTaskName" />
-    <input type="text" v-model="task.newTaskDesc" />
+    <input type="text" placeholder="Enter a task name" v-model="task.newTaskTitle" />
+    <input type="text" placeholder="Enter a task description" v-model="task.newTaskDesc" />
     <button @click="$emit('create-new-task', task)">+</button>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       task: {
-        newTaskName: "",
+        newTaskTitle: "",
         newTaskDesc: ""
       }
     };
