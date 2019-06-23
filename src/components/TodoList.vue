@@ -19,8 +19,8 @@ export default {
   data() {
     return {
       tasks: [
-        { taskTitle: "first task", taskDescription: "first desc", taskId: 1 },
-        { taskTitle: "second task", taskDescription: "second desc", taskId: 2 }
+        { taskTitle: "first task", taskDescription: "first desc", taskId: 1 ,status:'todo'},
+        { taskTitle: "second task", taskDescription: "second desc", taskId: 2, status:'done' }
       ]
     };
   },
@@ -30,6 +30,7 @@ export default {
       let newTask = {
         taskTitle: task.newTaskTitle,
         taskDescription: task.newTaskDesc,
+        taskStatus: 'todo',
         taskId: this.newTaskId
       };
       if(newTask.taskTitle.length>0){
