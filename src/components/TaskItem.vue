@@ -11,7 +11,7 @@
           />
         </div>
         <button v-show="!showDescription" @click="editTitle = !editTitle">
-          {{editTitleButton}}
+          {{ editTitleButton }}
         </button>
       </div>
     </div>
@@ -21,15 +21,15 @@
         v-model="task.itemDesc"
         @blur.stop="editDescription = false"
       ></textarea>
-      {{task.itemStatus}}
+      {{ task.itemStatus }}
     </div>
     <button
       v-show="showDescription"
       @click="editDescription = !editDescription"
     >
-      {{editDescriptionButton}}
+      {{ editDescriptionButton }}
     </button>
-    <button @click="setStatusButton">{{statusButton}}</button>
+    <button @click="setStatusButton">{{ statusButton }}</button>
   </div>
 </template>
 
@@ -54,18 +54,24 @@ export default {
         itemDesc: this.taskDetails.taskDescription,
         itemStatus: this.taskDetails.status,
         itemId: this.taskDetails.taskId
-      },
+      }
     };
   },
   methods: {
-    setStatusButton(){
-      this.task.itemStatus = (this.task.itemStatus==='todo') ? "done":"todo";
-      },
+    setStatusButton() {
+      this.task.itemStatus = this.task.itemStatus === "todo" ? "done" : "todo";
+    }
   },
   computed: {
-    editTitleButton(){return (this.editTitle)?"save":"edit"},
-    editDescriptionButton(){return (this.editDescription)?"save":"edit"},
-    statusButton() {return (this.task.itemStatus==='todo')? "Done" : "Todo"},
+    editTitleButton() {
+      return this.editTitle ? "save" : "edit";
+    },
+    editDescriptionButton() {
+      return this.editDescription ? "save" : "edit";
+    },
+    statusButton() {
+      return this.task.itemStatus === "todo" ? "Done" : "Todo";
+    }
   }
 };
 </script>
@@ -74,7 +80,7 @@ export default {
 .clickable {
   cursor: pointer;
 }
-  .todo {
-    text: red;
-  }
+.todo {
+  text: red;
+}
 </style>
