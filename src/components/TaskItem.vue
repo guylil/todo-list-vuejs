@@ -21,8 +21,8 @@
         v-model="task.itemDesc"
         @blur.stop="editDescription = false"
       ></textarea>
-      {{ task.itemStatus }}
     </div>
+    {{task.itemStatus}}
     <button
       v-show="showDescription"
       @click="editDescription = !editDescription"
@@ -40,7 +40,7 @@ export default {
     taskDetails: {
       taskTitle: String,
       taskDescription: String,
-      status: String,
+      taskStatus: String,
       taskId: Number
     }
   },
@@ -52,7 +52,7 @@ export default {
       task: {
         itemTitle: this.taskDetails.taskTitle,
         itemDesc: this.taskDetails.taskDescription,
-        itemStatus: this.taskDetails.status,
+        itemStatus: this.taskDetails.taskStatus,
         itemId: this.taskDetails.taskId
       }
     };
@@ -61,6 +61,9 @@ export default {
     setStatusButton() {
       this.task.itemStatus = this.task.itemStatus === "todo" ? "done" : "todo";
     }
+  },
+  updated() {
+    this.$emit("task-update", this.task);
   },
   computed: {
     editTitleButton() {
