@@ -22,7 +22,7 @@
         @blur.stop="editDescription = false"
       ></textarea>
     </div>
-    {{task.itemStatus}}
+    {{ task.itemStatus }}
     <button
       v-show="showDescription"
       @click="editDescription = !editDescription"
@@ -30,6 +30,7 @@
       {{ editDescriptionButton }}
     </button>
     <button @click="setStatusButton">{{ statusButton }}</button>
+    <button @click="moveToDeleted">Delete</button>
   </div>
 </template>
 
@@ -60,6 +61,9 @@ export default {
   methods: {
     setStatusButton() {
       this.task.itemStatus = this.task.itemStatus === "todo" ? "done" : "todo";
+    },
+    moveToDeleted() {
+      this.task.itemStatus = "deleted";
     }
   },
   updated() {

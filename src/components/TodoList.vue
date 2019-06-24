@@ -90,7 +90,7 @@ export default {
     },
     tasksToShow() {
       return this.filterBy === "all"
-        ? this.tasks
+        ? this.tasks.filter(task => task.taskStatus !== 'deleted')
         : this.tasks.filter(task => task.taskStatus === this.filterBy);
     }
   }
