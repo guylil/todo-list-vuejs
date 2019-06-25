@@ -8,6 +8,7 @@
             :disabled="!editTitle"
             type="text"
             v-model="task.itemTitle"
+            @blur.stop="editTitle = false"
           />
         </div>
         <button v-show="!showDescription" @click="editTitle = !editTitle">

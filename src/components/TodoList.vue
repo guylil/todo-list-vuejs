@@ -32,32 +32,7 @@ export default {
     };
   },
   mounted() {
-    this.tasks.push(
-      {
-        taskTitle: "first task",
-        taskDescription: "first desc",
-        taskId: 1,
-        taskStatus: "done"
-      },
-      {
-        taskTitle: "second task",
-        taskDescription: "second desc",
-        taskId: 2,
-        taskStatus: "done"
-      },
-      {
-        taskTitle: "3rd task",
-        taskDescription: "desc",
-        taskId: 3,
-        taskStatus: "todo"
-      },
-      {
-        taskTitle: "4th task",
-        taskDescription: "desc",
-        taskId: 4,
-        taskStatus: "done"
-      }
-    );
+    this.getFromLocalStorage();
   },
   methods: {
     createNewTask(task) {
@@ -70,6 +45,7 @@ export default {
       };
       if (newTask.taskTitle.length > 0) {
         this.tasks.push(newTask);
+        this.saveToLocalStorage();
       }
     },
     updateATask(updatedTask) {
@@ -80,7 +56,14 @@ export default {
           task.taskStatus = updatedTask.itemStatus;
         }
       });
-    }
+      this.saveToLocalStorage();
+    },
+    getFromLocalStorage() {
+      if (localStorage.tasks) this.tasks = JSON.parse(localStorage.tasks);
+    },
+    saveToLocalStorage() {
+      localStorage.tasks = JSON.stringify(this.tasks);
+    },
   },
   computed: {
     newTaskId() {
@@ -90,7 +73,7 @@ export default {
     },
     tasksToShow() {
       return this.filterBy === "all"
-        ? this.tasks.filter(task => task.taskStatus !== 'deleted')
+        ? this.tasks.filter(task => task.taskStatus !== "deleted")
         : this.tasks.filter(task => task.taskStatus === this.filterBy);
     }
   }
