@@ -59,10 +59,10 @@ export default {
       this.saveToLocalStorage();
     },
     getFromLocalStorage() {
-      if (localStorage.tasks) this.tasks = JSON.parse(localStorage.tasks);
+      if (localStorage.tasks) this.tasks = JSON.parse(localStorage.getItem("tasks"));
     },
     saveToLocalStorage() {
-      localStorage.tasks = JSON.stringify(this.tasks);
+      localStorage.setItem("tasks",JSON.stringify(this.tasks));
     },
   },
   computed: {
