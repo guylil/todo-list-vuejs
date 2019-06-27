@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div>
+    <div class="filter-bar">
       <button @click="filterBy = 'all'">all</button>
       <button @click="filterBy = 'todo'">todo</button>
       <button @click="filterBy = 'done'">done</button>
@@ -83,5 +83,10 @@ export default {
 <style scoped>
 .blue {
   background-color: cornflowerblue;
+}
+  .filter-bar{
+    display: flex;
+    justify-content: space-around;
+    padding: 3px 0;
 }
 </style>
