@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <div class="filter-bar">
-      <button @click="filterBy = 'all'">all</button>
-      <button @click="filterBy = 'todo'">todo</button>
-      <button @click="filterBy = 'done'">done</button>
+      <v-btn @click="filterBy = 'all'">all</v-btn>
+      <v-btn @click="filterBy = 'todo'">todo</v-btn>
+      <v-btn @click="filterBy = 'done'">done</v-btn>
     </div>
     <new-task @create-new-task="createNewTask"></new-task>
     <div v-for="task in tasksToShow" :key="task.taskId">
