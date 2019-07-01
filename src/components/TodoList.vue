@@ -1,19 +1,26 @@
 <template>
-  <div class="hello">
-    <div class="filter-bar">
-      <v-btn @click="filterBy = 'all'">all</v-btn>
-      <v-btn @click="filterBy = 'todo'">todo</v-btn>
-      <v-btn @click="filterBy = 'done'">done</v-btn>
+  <v-container>
+    <v-layout justify-space-around>
+        <v-tooltip top><template v-slot:activator="{ on }">
+          <v-flex  v-on="on"><v-btn flat outline @click="filterBy = 'all'"><v-icon large>list</v-icon></v-btn></v-flex>
+        </template><span>All</span></v-tooltip>
+
+      <v-flex><v-btn flat outline @click="filterBy = 'todo'">todo</v-btn></v-flex>
+      <v-tooltip top><template #activator="{ on }">
+        <v-flex v-on="on"><v-btn flat outline @click="filterBy = 'done'"><v-icon>done_all</v-icon></v-btn></v-flex>
+      </template><span>Done</span></v-tooltip>
+    </v-layout>
+    <div class="hello">
+      <new-task @create-new-task="createNewTask"></new-task>
+      <div v-for="task in tasksToShow" :key="task.taskId">
+        <task-item
+          class="blue"
+          :task-details="task"
+          @task-update="updateATask"
+        ></task-item>
+      </div>
     </div>
-    <new-task @create-new-task="createNewTask"></new-task>
-    <div v-for="task in tasksToShow" :key="task.taskId">
-      <task-item
-        class="blue"
-        :task-details="task"
-        @task-update="updateATask"
-      ></task-item>
-    </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -59,11 +66,12 @@ export default {
       this.saveToLocalStorage();
     },
     getFromLocalStorage() {
-      if (localStorage.tasks) this.tasks = JSON.parse(localStorage.getItem("tasks"));
+      if (localStorage.tasks)
+        this.tasks = JSON.parse(localStorage.getItem("tasks"));
     },
     saveToLocalStorage() {
-      localStorage.setItem("tasks",JSON.stringify(this.tasks));
-    },
+      localStorage.setItem("tasks", JSON.stringify(this.tasks));
+    }
   },
   computed: {
     newTaskId() {
@@ -83,10 +91,5 @@ export default {
 <style scoped>
 .blue {
   background-color: cornflowerblue;
-}
-  .filter-bar{
-    display: flex;
-    justify-content: space-around;
-    padding: 3px 0;
 }
 </style>

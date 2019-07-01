@@ -16,11 +16,11 @@
     </v-toolbar>
 
     <v-content>
-<!--      <HelloWorld />-->
-      <div>
+      <v-container>
         <div>My little to do list</div>
         <todo-list />
-      </div>
+        <!--      <HelloWorld />-->
+      </v-container>
     </v-content>
   </v-app>
 </template>
