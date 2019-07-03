@@ -1,23 +1,22 @@
 <template>
   <v-container>
-    <v-layout justify-space-around>
+    <v-layout align-center justify-space-around row>
         <v-tooltip top><template v-slot:activator="{ on }">
-          <v-flex  v-on="on"><v-btn flat outline @click="filterBy = 'all'"><v-icon large>list</v-icon></v-btn></v-flex>
+          <v-flex  v-on="on"><v-btn small flat outline @click="filterBy = 'all'"><v-icon>list</v-icon></v-btn></v-flex>
         </template><span>All</span></v-tooltip>
 
-      <v-flex><v-btn flat outline @click="filterBy = 'todo'">todo</v-btn></v-flex>
+      <v-flex><v-btn small flat outline @click="filterBy = 'todo'">todo</v-btn></v-flex>
 
       <v-tooltip top><template #activator="{ on }">
-        <v-flex v-on="on"><v-btn flat outline @click="filterBy = 'done'"><v-icon>done_all</v-icon></v-btn></v-flex>
+        <v-flex v-on="on"><v-btn small flat outline @click="filterBy = 'done'"><v-icon>done_all</v-icon></v-btn></v-flex>
       </template><span>Done</span></v-tooltip>
 
-      <v-flex><v-btn flat outline @click="showCreateNewTask=!showCreateNewTask"><v-icon>add</v-icon></v-btn></v-flex>
+      <v-flex><v-btn small icon @click="showCreateNewTask=!showCreateNewTask"><v-icon>add_box</v-icon></v-btn></v-flex>
     </v-layout>
     <div class="hello">
       <new-task v-if="showCreateNewTask" @create-new-task="createNewTask"></new-task>
       <div v-for="task in tasksToShow" :key="task.taskId">
         <task-item
-          class="blue"
           :task-details="task"
           @task-update="updateATask"
         ></task-item>
@@ -93,7 +92,5 @@ export default {
 </script>
 
 <style scoped>
-.blue {
-  background-color: cornflowerblue;
-}
+
 </style>
