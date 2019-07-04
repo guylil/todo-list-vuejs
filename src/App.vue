@@ -1,44 +1,48 @@
 <template>
-  <v-app>
+  <v-app :dark="themeToggle">
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span class="font-weight-light">My little to do list</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+      <span class="mr-2">
+        Beautifully done with
+        <v-btn class="info" small href="http://vuetifyjs.com"
+          >Vuetify</v-btn
+        ></span
       >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
+      <v-btn icon @click="toggle"
+        ><v-icon>{{ toggleIcon }}</v-icon></v-btn
+      >
     </v-toolbar>
 
     <v-content>
       <v-container>
-        <div>My little to do list</div>
         <todo-list />
-        <!--      <HelloWorld />-->
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
 import TodoList from "./components/TodoList";
 
 export default {
   name: "App",
-  components: {
-    TodoList,
-    // HelloWorld
-  },
+  components: { TodoList },
   data() {
     return {
-      //
+      theme: "light"
     };
+  },
+  methods: {
+    toggle() {
+      this.theme = this.theme === "light" ? "dark" : "light";
+    }
+  },
+  computed: {
+    themeToggle() {return this.theme === "dark";},
+    toggleIcon() {return this.theme === "dark" ? "toggle_on" : "toggle_off";}
   }
 };
 </script>
