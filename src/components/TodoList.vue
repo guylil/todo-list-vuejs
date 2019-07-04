@@ -1,25 +1,45 @@
 <template>
   <v-container>
     <v-layout align-center justify-space-around row>
-        <v-tooltip top><template v-slot:activator="{ on }">
-          <v-flex  v-on="on"><v-btn small flat outline @click="filterBy = 'all'"><v-icon>list</v-icon></v-btn></v-flex>
-        </template><span>All</span></v-tooltip>
+      <v-tooltip top
+        ><template v-slot:activator="{ on }">
+          <v-flex v-on="on"
+            ><v-btn small flat outline @click="filterBy = 'all'"
+              ><v-icon>list</v-icon></v-btn
+            ></v-flex
+          > </template
+        ><span>All</span></v-tooltip
+      >
 
-      <v-flex><v-btn small flat outline @click="filterBy = 'todo'">todo</v-btn></v-flex>
+      <v-flex
+        ><v-btn small flat outline @click="filterBy = 'todo'"
+          >todo</v-btn
+        ></v-flex
+      >
 
-      <v-tooltip top><template #activator="{ on }">
-        <v-flex v-on="on"><v-btn small flat outline @click="filterBy = 'done'"><v-icon>done_all</v-icon></v-btn></v-flex>
-      </template><span>Done</span></v-tooltip>
+      <v-tooltip top
+        ><template #activator="{ on }">
+          <v-flex v-on="on"
+            ><v-btn small flat outline @click="filterBy = 'done'"
+              ><v-icon>done_all</v-icon></v-btn
+            ></v-flex
+          > </template
+        ><span>Done</span></v-tooltip
+      >
 
-      <v-flex><v-btn small icon @click="showCreateNewTask=!showCreateNewTask"><v-icon>add_box</v-icon></v-btn></v-flex>
+      <v-flex
+        ><v-btn small icon @click="showCreateNewTask = !showCreateNewTask"
+          ><v-icon>add_box</v-icon></v-btn
+        ></v-flex
+      >
     </v-layout>
     <div class="hello">
-      <new-task v-if="showCreateNewTask" @create-new-task="createNewTask"></new-task>
+      <new-task
+        v-if="showCreateNewTask"
+        @create-new-task="createNewTask"
+      ></new-task>
       <div v-for="task in tasksToShow" :key="task.taskId">
-        <task-item
-          :task-details="task"
-          @task-update="updateATask"
-        ></task-item>
+        <task-item :task-details="task" @task-update="updateATask"></task-item>
       </div>
     </div>
   </v-container>
@@ -43,6 +63,7 @@ export default {
   },
   mounted() {
     this.getFromLocalStorage();
+    if (this.tasks.length === 0) this.addTasksForFirstTime();
   },
   methods: {
     createNewTask(task) {
@@ -74,6 +95,35 @@ export default {
     },
     saveToLocalStorage() {
       localStorage.setItem("tasks", JSON.stringify(this.tasks));
+    },
+    addTasksForFirstTime() {
+      this.tasks.push(
+        {
+          taskTitle: "Welcome to my to do list app",
+          taskDescription: "There are a lot of features here",
+          taskStatus: "todo",
+          taskId: 1
+        },
+        {
+          taskTitle: "Have a look",
+          taskDescription: "There are a lot of neat stuff",
+          taskStatus: "done",
+          taskId: 2
+        },
+        {
+          taskTitle: "Click around",
+          taskDescription:
+            "And you can see the code @ https://github.com/guylil/todo-list-vuejs --> on the Vuetify branch",
+          taskStatus: "done",
+          taskId: 3
+        },
+        {
+          taskTitle: "The app even works offline",
+          taskDescription: "Try it out",
+          taskStatus: "done",
+          taskId: 4
+        }
+      );
     }
   },
   computed: {
@@ -91,6 +141,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
