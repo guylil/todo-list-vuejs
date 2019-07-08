@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="filter-bar">
-      <md-button @click="filterBy = 'all'">all</md-button>
-      <md-button @click="filterBy = 'todo'">todo</md-button>
-      <md-button @click="filterBy = 'done'">done</md-button>
-      <md-button @click="showNewTask=!showNewTask"><md-icon>add</md-icon></md-button>
+    <div class="filter-bar md-layout-nowrap">
+      <md-button class="md-layout-item md-xsmall-size-28 " @click="filterBy = 'all'"><md-icon>list</md-icon></md-button>
+      <md-button class="md-layout-item md-xsmall-size-28 " @click="filterBy = 'todo'">todo</md-button>
+      <md-button class="md-layout-item md-xsmall-size-28 " @click="filterBy = 'done'"><md-icon>done_all</md-icon></md-button>
+      <md-button class="md-layout-item md-xsmall-size-20 " @click="showNewTask=!showNewTask"><md-icon>add</md-icon></md-button>
     </div>
     <new-task v-if="showNewTask" @create-new-task="createNewTask"></new-task>
     <div v-for="task in tasksToShow" :key="task.taskId">
