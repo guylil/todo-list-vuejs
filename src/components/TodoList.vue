@@ -1,11 +1,12 @@
 <template>
-  <div class="hello">
+  <div>
     <div class="filter-bar">
-      <button @click="filterBy = 'all'">all</button>
-      <button @click="filterBy = 'todo'">todo</button>
-      <button @click="filterBy = 'done'">done</button>
+      <md-button @click="filterBy = 'all'">all</md-button>
+      <md-button @click="filterBy = 'todo'">todo</md-button>
+      <md-button @click="filterBy = 'done'">done</md-button>
+      <md-button @click="showNewTask=!showNewTask"><md-icon>add</md-icon></md-button>
     </div>
-    <new-task @create-new-task="createNewTask"></new-task>
+    <new-task v-if="showNewTask" @create-new-task="createNewTask"></new-task>
     <div v-for="task in tasksToShow" :key="task.taskId">
       <task-item
         class="blue"
@@ -28,7 +29,8 @@ export default {
   data() {
     return {
       tasks: [],
-      filterBy: "all"
+      filterBy: "all",
+      showNewTask: false
     };
   },
   mounted() {
@@ -81,10 +83,7 @@ export default {
 </script>
 
 <style scoped>
-.blue {
-  background-color: cornflowerblue;
-}
-  .filter-bar{
+.filter-bar{
     display: flex;
     justify-content: space-around;
     padding: 3px 0;

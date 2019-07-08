@@ -1,9 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
+
 import VueMaterial from "vue-material";
 import "vue-material/dist/vue-material.min.css";
-
+import "vue-material/dist/theme/default.css";
+// TODO: change to a specific imports
 Vue.use(VueMaterial);
 
 Vue.config.productionTip = false;
