@@ -1,37 +1,40 @@
 <template>
   <div>
-    <div>
-      <div>
-        <div class="clickable" @click="showDescription = !showDescription">
-          <input
-            class="clickable"
-            :disabled="!editTitle"
-            type="text"
-            v-model="task.itemTitle"
-            @blur.stop="editTitle = false"
-          />
+    <div class="container">
+      <div class="md-layout md-alignment-center-space-around">
+        <div class="md-layout-item md-xsmall-size-10 clickable" @click="isShowDescription = !isShowDescription">{{ task.itemStatus }}</div>
+        <div class="md-layout-item md-xsmall-size-60 clickable" @click="isShowDescription = !isShowDescription">
+          <md-field>
+            <md-input
+                    ref="titleInput"
+                    :disabled="isTitleDisabled"
+                    type="text"
+                    v-model="task.itemTitle"
+                    @blur.stop="isTitleDisabled = true; isShowMenu = true"
+            />
+          </md-field>
         </div>
-        <button v-show="!showDescription" @click="editTitle = !editTitle">
-          {{ editTitleButton }}
-        </button>
+        <div class="md-layout-item md-xsmall-size-15">
+          <md-menu md-size="auto" v-if="isShowMenu">
+            <md-button md-menu-trigger><md-icon>more_vert</md-icon></md-button>
+            <md-menu-content>
+              <md-menu-item v-if="!isShowDescription"><md-button @click="editTitle"><md-icon>{{ editTitleButton }}</md-icon></md-button></md-menu-item>
+              <md-menu-item v-if="isShowDescription"><md-button @click="editDescription"><md-icon>{{ editDescriptionButton }}</md-icon></md-button></md-menu-item>
+              <md-menu-item><md-button @click="setStatusButton">{{ statusButton }}</md-button></md-menu-item>
+              <md-menu-item><md-button @click="moveToDeleted">Delete</md-button></md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+        <md-field v-show="isShowDescription">
+          <md-textarea
+                  ref="descriptionText"
+                  :disabled="isDescriptionDisabled"
+                  v-model="task.itemDesc"
+                  @blur.stop="isDescriptionDisabled = true; isShowMenu=true"
+          ></md-textarea>
+        </md-field>
       </div>
     </div>
-    <div v-show="showDescription">
-      <textarea
-        :disabled="!editDescription"
-        v-model="task.itemDesc"
-        @blur.stop="editDescription = false"
-      ></textarea>
-    </div>
-    {{ task.itemStatus }}
-    <button
-      v-show="showDescription"
-      @click="editDescription = !editDescription"
-    >
-      {{ editDescriptionButton }}
-    </button>
-    <button @click="setStatusButton">{{ statusButton }}</button>
-    <button @click="moveToDeleted">Delete</button>
   </div>
 </template>
 
@@ -48,9 +51,10 @@ export default {
   },
   data() {
     return {
-      showDescription: false,
-      editDescription: false,
-      editTitle: false,
+      isShowDescription: false,
+      isDescriptionDisabled: true,
+      isTitleDisabled: true,
+      isShowMenu: true,
       task: {
         itemTitle: this.taskDetails.taskTitle,
         itemDesc: this.taskDetails.taskDescription,
@@ -65,17 +69,36 @@ export default {
     },
     moveToDeleted() {
       this.task.itemStatus = "deleted";
-    }
+    },
+    editTitle(){
+      if(this.isTitleDisabled) {
+        this.isTitleDisabled = false;
+        // F**img vue-material
+        setTimeout(()=>{this.$refs.titleInput.$el.focus()},200);
+        this.isShowMenu = false;
+      } else {
+        this.isTitleDisabled = true;
+      }
+    },
+    editDescription(){
+        if(this.isDescriptionDisabled) {
+            this.isDescriptionDisabled = false;
+            setTimeout(()=>{this.$refs.descriptionText.$el.focus()},200);
+            this.isShowMenu = false
+        }else {
+            this.isDescriptionDisabled = true;
+        }
+    },
   },
   updated() {
     this.$emit("task-update", this.task);
   },
   computed: {
     editTitleButton() {
-      return this.editTitle ? "save" : "edit";
+      return this.isTitleDisabled ? "edit":"save";
     },
     editDescriptionButton() {
-      return this.editDescription ? "save" : "edit";
+      return this.isDescriptionDisabled ? "edit":"save";
     },
     statusButton() {
       return this.task.itemStatus === "todo" ? "Done" : "Todo";
@@ -88,7 +111,7 @@ export default {
 .clickable {
   cursor: pointer;
 }
-.todo {
-  text: red;
-}
+    .container{
+        padding: 0 3%;
+    }
 </style>

@@ -9,7 +9,6 @@
     <new-task v-if="showNewTask" @create-new-task="createNewTask"></new-task>
     <div v-for="task in tasksToShow" :key="task.taskId">
       <task-item
-        class="blue"
         :task-details="task"
         @task-update="updateATask"
       ></task-item>
