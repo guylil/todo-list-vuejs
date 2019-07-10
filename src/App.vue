@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>My little to do list</div>
+    <h2 class="center">My little to do list</h2>
     <todo-list />
   </div>
 </template>
@@ -21,6 +21,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 5px;
 }
+  .center{
+    text-align: center;
+    /*background-color: lightgrey;*/
+    padding: 10px 2px 0 0;
+    margin: 0;
+  }
 </style>
