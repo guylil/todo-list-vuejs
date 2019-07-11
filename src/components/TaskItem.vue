@@ -2,12 +2,13 @@
   <div>
     <div class="container">
       <div class="md-layout md-alignment-center-space-around">
-        <md-chip
-          :class="{ 'md-primary': task.itemStatus === 'todo' }"
-          class="md-layout-item md-xsmall-size-10 clickable"
-          @click="isShowDescription = !isShowDescription"
-          >{{ task.itemStatus.toUpperCase() }}
-        </md-chip>
+        <div class="md-layout-item md-xsmall-size-10 clickable">
+          <md-chip
+            :class="{ 'md-primary': task.itemStatus === 'todo' }"
+            @click="isShowDescription = !isShowDescription"
+            >{{ task.itemStatus.toUpperCase() }}
+          </md-chip>
+        </div>
         <div
           class="md-layout-item md-xsmall-size-60 clickable"
           @click="isShowDescription = !isShowDescription"
