@@ -18,7 +18,7 @@ In order to see each one of them just checkout to the specific branch
 ``` git pull <code>git@github.com:guylil/todo-list-vuejs.git</code>```
 ``` npm install```
 ``` npm run serve```
- Open your favorite IDE and see the beautiful code for your self
+ Open your favorite IDE and see the beautiful code for yourself
  Remember that you can '''git checkout''' to different branch to see each design library
 
  Feel Free to send me feedback or open issues
