@@ -4,8 +4,8 @@
 
 ## What do we have here?
 ```
-It's a simple To-Do web app with 3 different visual tools (Vuetify, Vue Material, )
-In order to see each one of them just checkout to the specific branch
+It's a simple static To-Do web app with 3 different visual tools (Vuetify, Vue Material, )
+In order to see each one of them just checkout to the specific branch.
 ```
 
 ### You can see them live at:
@@ -23,10 +23,10 @@ npm run serve
 
  Open your favorite IDE and see the beautiful code for yourself
 
- Remember that you can '''git checkout''' to different branch to see each design library
+ Remember that you can ```git checkout``` to different branch to see each design library
 
  Feel Free to send me feedback or open issues
 
  Have a blast of a day :)
 
- And remember <bold>Don't use any of this in production</bold>
+ And remember DON'T use any of this in production
