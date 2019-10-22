@@ -2,10 +2,10 @@
   <v-container>
     <!--    The title row-->
     <v-layout align-center justify-space-between>
-      <v-flex
-        ><v-chip small :dark="statusColor">{{ task.itemStatus }}</v-chip></v-flex
-      >
-      <v-flex xs10 class="clickable" @click="titleClick">
+      <v-flex>
+        <v-chip small :dark="statusColor">{{ task.itemStatus }}</v-chip>
+      </v-flex>
+      <v-flex xs10 pl-2 class="clickable" @click="titleClick">
         <v-text-field
           :disabled="!editTitle"
           v-model="task.itemTitle"
